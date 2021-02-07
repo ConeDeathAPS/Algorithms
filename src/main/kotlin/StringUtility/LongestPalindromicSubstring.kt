@@ -4,14 +4,14 @@ import java.lang.IllegalStateException
 import kotlin.math.ceil
 import kotlin.math.floor
 
-class ShortestPalindromicSubstring(var s: String) {
-    private val dArr: List<Char> = insertDelimiters();
+class LongestPalindromicSubstring(var s: String) {
+    private val dArr: List<Char> = insertDelimiters()
     fun extractLongestPalindrome(): String {
         if (s.isBlank()) throw IllegalStateException("String is empty, it shouldn't be")
         if (s.length == 1) return s;
         var center: Int = 2;
         var longestPalindrome: String? = null
-        println("Searching for palindromes in delimited array $dArr")
+//        println("Searching for palindromes in delimited array $dArr")
         while (center < dArr.size - 2) {
             val palindromeBounds: List<Int>? = searchForPalindromeWithCenter(center)
             if (!palindromeBounds.isNullOrEmpty()) {
@@ -29,19 +29,19 @@ class ShortestPalindromicSubstring(var s: String) {
         val increment: Int = if (dArr[c] != '#') 2 else 1
         var l: Int = c - increment
         var r: Int = c + increment
-        println("Checking for palindromes centered at $c with l = $l and r = $r")
+//        println("Checking for palindromes centered at $c with l = $l and r = $r")
         if (dArr[l] != dArr[r]) {
-            println("Index $c is not a palindromic center")
+//            println("Index $c is not a palindromic center")
             return null
         }
         while (l >= 0 && r < dArr.size - 1 && dArr[l] == dArr[r]) {
-            println("Palindrome found at $l and $r")
+//            println("Palindrome found at $l and $r")
             l -= 2
             r += 2
         }
         l += 2
         r -= 2
-        println("Found palindrome bounds at $l and $r")
+//        println("Found palindrome bounds at $l and $r")
         return listOf(l, r)
     }
 
